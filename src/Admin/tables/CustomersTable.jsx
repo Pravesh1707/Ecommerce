@@ -106,6 +106,7 @@ const statusObj = {
   professional: { color: 'success' }
 }
 
+
 const CustomersTable = () => {
   const dispatch = useDispatch();
   const navigate=useNavigate();

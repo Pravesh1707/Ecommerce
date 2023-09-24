@@ -11,6 +11,11 @@ import Typography from '@mui/material/Typography'
 import TableContainer from '@mui/material/TableContainer'
 import { Avatar, CardHeader, Pagination } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import {getUsers} from "../../../Redux/Admin/Orders/Action";
+import { blue } from '@mui/material/colors'
+
 
 const rows = [
   {
@@ -96,9 +101,15 @@ const rows = [
 
 const Customers = () => {
   const navigate=useNavigate();
+  const dispatch = useDispatch();
   function handlePaginationChange(event, value) {
     console.log("Current page:", value);
   }
+  const jwt = localStorage.getItem("jwt");
+  const { auth } = useSelector((store) => store);
+  useEffect(() => {
+    dispatch(getUsers(jwt));
+  },[]);
   return (
     <Box>
          <Card>
@@ -119,11 +130,17 @@ const Customers = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.slice(0,10).map((item,index) => (
+            {auth?.user?.map((item,index) => (
               <TableRow hover key={item.name} sx={{ '&:last-of-type td, &:last-of-type th': { border: 0 } }}>
                 <TableCell>{index+1}</TableCell>
-                <TableCell> <Avatar alt={item.name} src={item.image} /> </TableCell>
-                <TableCell>{item.name}</TableCell>
+                <TableCell> <Avatar sx={{
+                          bgcolor: blue[500],
+                          color: "white",
+                          cursor: "pointer",
+                        }}
+                      >
+                        {item.firstName[0].toUpperCase()}</Avatar></TableCell>
+                <TableCell>{item.firstName}&nbsp;{item.lastName}</TableCell>
                 <TableCell>{item.email}</TableCell>
                 
                 
