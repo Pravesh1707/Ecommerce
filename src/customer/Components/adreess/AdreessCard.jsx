@@ -8,8 +8,9 @@ const AddressCard = ({address}) => {
         <p className="font-semibold">{`${address?.firstName} ${address?.lastName}`}</p>
 
         <p>
-          {`${address?.streetAddress} ${address?.city} ${address?.state} ${address?.zipCode}`}
+          {`${address?.streetAddress}`} <br />{`${address?.city}, ${address?.state}, ${address?.zipcode}`}
         </p>
+        {/* <p>{`${address?.city} ${address?.state} ${address?.zipcode}`}</p> */}
 
         <div className="space-y-1">
           <p className="font-semibold">Phone Number</p>

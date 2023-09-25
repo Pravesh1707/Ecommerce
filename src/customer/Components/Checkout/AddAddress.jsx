@@ -27,7 +27,7 @@ export default function Add({ handleNext }) {
       streetAddress: data.get("address"),
       city: data.get("city"),
       state: data.get("state"),
-      zipCode: data.get("zip"),
+      zipcode: data.get("zip"),
       mobile: data.get("phoneNumber"),
     };
 
@@ -45,12 +45,11 @@ export default function Add({ handleNext }) {
     <Grid container spacing={4}>
       <Grid item xs={12} lg={5}>
         <Box className="border rounded-md shadow-md h-[30.5rem] overflow-y-scroll ">
-          {auth.user?.addresses?.map((item) => (
+          {auth?.user?.address?.map((item) => (
             <div
               onClick={() => setSelectedAdress(item)}
               className="p-5 py-7 border-b cursor-pointer"
             >
-              {" "}
               <AddressCard address={item} />
               {selectedAddress?.id === item.id && (
                 <Button
